@@ -19,6 +19,7 @@ def index():
         try:
             text = response['message']['text']
         except KeyError:
+            send_message(chat_id, text="Input is incorrect, try using '/help'")
             return '<h2>Bot is currently working...</h2>'
         
         available_currencies_list = convert_currency.list_currencies()
