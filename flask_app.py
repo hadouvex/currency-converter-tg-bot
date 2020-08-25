@@ -15,7 +15,11 @@ def index():
     if request.method == 'POST':
         response = request.get_json()
         chat_id = response['message']['chat']['id']
-        text = response['message']['text']
+
+        try:
+            text = response['message']['text']
+        except KeyError:
+            return '<h2>Bot is currently working...</h2>'
         
         available_currencies_list = convert_currency.list_currencies()
         available_currencies_string = ''
